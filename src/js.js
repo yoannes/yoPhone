@@ -1,20 +1,18 @@
-// V 1.0
+// V 1.1
 
 
 (function ( $ ) {
-  $.fn.yoPhone = function(params, val) {
+  $.fn.yoPhone = function(params) {
     var id = this.prop("id");
-
 
     if (params === "create")
       create(this, id);
-
 
     else if (params === "add")
       create(this, id);
 
     else if (params === "getAll")
-      getAll();
+      getAll(id);
 
     return this;
   };
@@ -49,14 +47,14 @@
       "<table style='width: 100%' class='yoPhone-row' id='yoPhoneRow-"+ id + yoCnt[id] +"'>" +
         "<tr>" +
           "<td class='yoPhone-mask-size'>" +
-            "<select id='yoPhoneMask-"+ id + yoCnt[id] +"' class='form-control yoPhone-mask'>" +
+            "<select id='yoPhoneMask-"+ id + yoCnt[id] +"' data-id='"+ id +"' class='form-control yoPhone-mask'>" +
               "<option value='mobile'>"+ lang.mobile[locale] +"</option>" +
               "<option value='work'>"+ lang.work[locale] +"</option>" +
               "<option value='home'>"+ lang.home[locale] +"</option>" +
             "</select>" +
           "</td>" +
           "<td class='yoPhone-number-size'>" +
-            "<input type='text' id='yoPhoneNumber-"+ id + yoCnt[id] +"' class='form-control yoPhone-number' />" +
+            "<input type='text' id='yoPhoneNumber-"+ id + yoCnt[id] +"' data-id='"+ id +"' class='form-control yoPhone-number' />" +
           "</td>" +
           "<td class='yoPhone-btn-del-size'>" +
             "<button type='button' id='yoPhoneDel-"+ id + yoCnt[id] +"' data-id='"+ id +"' data-i='"+ yoCnt[id] +"' class='btn btn-danger yoPhone-btn-del'><i class='fas fa-times'></i></button>" +
@@ -91,7 +89,7 @@
     yoCnt[id] += 1;
   };
 
-  var getAll = function () {
+  var getAll = function (id) {
     var ans = [];
     var masks = document.getElementsByClassName("yoPhone-mask");
     var numbers = document.getElementsByClassName("yoPhone-number");
@@ -100,7 +98,7 @@
       var mask = masks[i].value;
       var number = numbers[i].value.replace(/[^0-9]+/g, '');
 
-      if (number)
+      if (number && masks[i].dataset.id === id)
         ans.push([mask, number]);
     }
 
