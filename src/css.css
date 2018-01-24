@@ -25,7 +25,8 @@
 .yoPhone-number {
   border-radius: 0;
   -moz-border-radius: 0;
-
+  border-right: none;
+  border-left: none;
 }
 
 .yoPhone-btn-del {

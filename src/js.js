@@ -1,25 +1,30 @@
-// V 1.1
+// V 1.2
 
 
 (function ( $ ) {
-  $.fn.yoPhone = function(params) {
-    var id = this.prop("id");
+  var id = null;
+
+  $.fn.yoPhone = function(params, val) {
+    id = this.prop("id");
+
+    console.log("params", params);
 
     if (params === "create")
-      create(this, id);
-
-    else if (params === "add")
-      create(this, id);
+      create(this, val);
 
     else if (params === "getAll")
-      getAll(id);
+      return getAll();
+
+    else if (params.constructor === Array)
+      loopArrayToAdd(params);
+
 
     return this;
   };
 
   var yoCnt = {};
 
-  var create = function (f, id) {
+  var create = function (f, val) {
     yoCnt[id] = 0;
 
     console.log("create:", id);
@@ -28,18 +33,36 @@
       "<span id='yoPhoneAdd-"+ id +"' style='cursor: pointer'>"+ $.fn.yoPhone.set.lang.add[$.fn.yoPhone.set.locale] +"</span>"
     );
 
-    add(id);
+
+    if (val && val.constructor === Array)
+      loopArrayToAdd(val);
+
+    else
+      add();
+
 
     $("#yoPhoneAdd-"+ id)
       .off("click")
       .on("click", function () {
-        add(id);
+        add();
       });
 
 
   };
 
-  var add = function (id) {
+  var loopArrayToAdd = function (arr) {
+    for (var i=0; i < arr.length; i++) {
+      if (arr[i].length < 2)
+        continue;
+
+      var mask = arr[i][0];
+      var number = arr[i][1];
+
+      add(mask, number);
+    }
+  };
+
+  var add = function (mask, number) {
     var locale = $.fn.yoPhone.set.locale;
     var lang = $.fn.yoPhone.set.lang;
 
@@ -62,6 +85,12 @@
         "</tr>" +
       "</table>"
     );
+
+    if (mask && number){
+      $("#yoPhoneMask-"+ id + yoCnt[id]).val(mask);
+      $("#yoPhoneNumber-"+ id + yoCnt[id]).val(number);
+    }
+
 
     $("#yoPhoneDel-"+ id + yoCnt[id])
       .off("click")
@@ -89,7 +118,7 @@
     yoCnt[id] += 1;
   };
 
-  var getAll = function (id) {
+  var getAll = function () {
     var ans = [];
     var masks = document.getElementsByClassName("yoPhone-mask");
     var numbers = document.getElementsByClassName("yoPhone-number");
@@ -102,7 +131,7 @@
         ans.push([mask, number]);
     }
 
-    console.log(ans);
+    return ans;
   };
 
   $.fn.yoPhone.set = {

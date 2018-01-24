@@ -15,6 +15,7 @@
   <div id="test" style="border: 1px solid #e6e6e6; padding: 5px"></div>
   <br>
   <button type="button" class="btn btn-primary" onclick="getNumbers()">Get Numbers</button>
+  <button type="button" class="btn btn-primary" onclick="addNumber()">Add Number</button>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
@@ -26,12 +27,27 @@
 
 <script>
   function getNumbers() {
-    $("#test").yoPhone("getAll");
+    var numbers = $("#test").yoPhone("getAll");
+    console.log(numbers);
+  }
+
+  function addNumber() {
+    var number = [["home", "0000000000"]];
+
+    $("#test").yoPhone(number);
   }
 
   $(document).ready(function () {
     // yoPhone.setLocale("pt_br");
-    $("#test").yoPhone("create");
+
+    var numbers = [
+      ["home", "0000000000"],
+      ["mobile", "1111111111"],
+      ["work", "2222222222"],
+      ["mobile", "22922222222"]
+    ];
+
+    $("#test").yoPhone("create", numbers);
   });
 </script>
 </body>
