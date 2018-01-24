@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="src/css.min.css">
+  <title>yoPhone</title>
+</head>
+<body>
+
+<br>
+<h4>Example</h4>
+<div class="container-fluid" >
+  <div id="test" style="border: 1px solid #e6e6e6; padding: 5px"></div>
+  <br>
+  <button type="button" class="btn btn-primary" onclick="getNumbers()">Get Numbers</button>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
+<script defer src="lib/jquery.mask.min.js"></script>
+<script src="src/js.min.js"></script>
+
+<script>
+  function getNumbers() {
+    $("#test").yoPhone("getAll");
+  }
+
+  $(document).ready(function () {
+    // yoPhone.setLocale("pt_br");
+    $("#test").yoPhone("create");
+  });
+</script>
+</body>
+</html>
