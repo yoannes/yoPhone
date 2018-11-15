@@ -1,4 +1,4 @@
-// V 1.2
+// V 1.3
 
 
 (function ( $ ) {
@@ -74,6 +74,7 @@
               "<option value='mobile'>"+ lang.mobile[locale] +"</option>" +
               "<option value='work'>"+ lang.work[locale] +"</option>" +
               "<option value='home'>"+ lang.home[locale] +"</option>" +
+              "<option value='fax'>"+ lang.fax[locale] +"</option>" +
             "</select>" +
           "</td>" +
           "<td class='yoPhone-number-size'>" +
@@ -140,6 +141,7 @@
       home: {   en_us: "Home",   pt_br: "Casa",      ja: "自宅" },
       work: {   en_us: "Work",   pt_br: "Trabalho",  ja: "仕事" },
       mobile: { en_us: "Mobile", pt_br: "Celular",   ja: "携帯" },
+      fax: {    en_us: "Fax",    pt_br: "Fax",       ja: "ファックス" },
       add: {    en_us: "Add",    pt_br: "Adicionar", ja: "追加" },
     },
     mask: "sp"
